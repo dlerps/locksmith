@@ -13,3 +13,7 @@ div.passwordOutput {
 div.outerBlock {
     margin-top: 20%;
 }
+
+div.generateButtonBlock button {
+    width: 25%;
+}

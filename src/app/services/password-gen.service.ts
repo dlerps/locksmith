@@ -3,8 +3,26 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class PasswordGenService {
 
+
   private _specialCharsV1 = [ '(', ')', '-', '=', '$', '@', '!', '.', ':', '*', '/', '\\',
-    	'&', ',', '"', ';', '{', ']', '|', '?', '>', '%', '~', '#', '+', '[', '}', '_', '<', '^', "'" ];
+    '&', ',', '"', ';', '{', ']', '|', '?', '>', '%', '~', '#', '+', '[', '}', '_', '<', '^', "'" ];
+
+  private _hexDict = { '00' : 0, '01' : 1, '02' : 2, '03' : 3, '04' : 4, '05' : 5, '06' : 6, '07' : 7, '08' : 8, '09' : 9, '0a' : 10, '0b' : 11, '0c' : 12, '0d' : 13, '0e' : 14, '0f' : 15, 
+    '10' : 16, '11' : 17, '12' : 18, '13' : 19, '14' : 20, '15' : 21, '16' : 22, '17' : 23, '18' : 24, '19' : 25, '1a' : 26, '1b' : 27, '1c' : 28, '1d' : 29, '1e' : 30, '1f' : 31, 
+    '20' : 32, '21' : 33, '22' : 34, '23' : 35, '24' : 36, '25' : 37, '26' : 38, '27' : 39, '28' : 40, '29' : 41, '2a' : 42, '2b' : 43, '2c' : 44, '2d' : 45, '2e' : 46, '2f' : 47, 
+    '30' : 48, '31' : 49, '32' : 50, '33' : 51, '34' : 52, '35' : 53, '36' : 54, '37' : 55, '38' : 56, '39' : 57, '3a' : 58, '3b' : 59, '3c' : 60, '3d' : 61, '3e' : 62, '3f' : 63, 
+    '40' : 64, '41' : 65, '42' : 66, '43' : 67, '44' : 68, '45' : 69, '46' : 70, '47' : 71, '48' : 72, '49' : 73, '4a' : 74, '4b' : 75, '4c' : 76, '4d' : 77, '4e' : 78, '4f' : 79, 
+    '50' : 80, '51' : 81, '52' : 82, '53' : 83, '54' : 84, '55' : 85, '56' : 86, '57' : 87, '58' : 88, '59' : 89, '5a' : 90, '5b' : 91, '5c' : 92, '5d' : 93, '5e' : 94, '5f' : 95, 
+    '60' : 96, '61' : 97, '62' : 98, '63' : 99, '64' : 100, '65' : 101, '66' : 102, '67' : 103, '68' : 104, '69' : 105, '6a' : 106, '6b' : 107, '6c' : 108, '6d' : 109, '6e' : 110, '6f' : 111, 
+    '70' : 112, '71' : 113, '72' : 114, '73' : 115, '74' : 116, '75' : 117, '76' : 118, '77' : 119, '78' : 120, '79' : 121, '7a' : 122, '7b' : 123, '7c' : 124, '7d' : 125, '7e' : 126, '7f' : 127, 
+    '80' : -128, '81' : -127, '82' : -126, '83' : -125, '84' : -124, '85' : -123, '86' : -122, '87' : -121, '88' : -120, '89' : -119, '8a' : -118, '8b' : -117, '8c' : -116, '8d' : -115, '8e' : -114, '8f' : -113, 
+    '90' : -112, '91' : -111, '92' : -110, '93' : -109, '94' : -108, '95' : -107, '96' : -106, '97' : -105, '98' : -104, '99' : -103, '9a' : -102, '9b' : -101, '9c' : -100, '9d' : -99, '9e' : -98, '9f' : -97, 
+    'a0' : -96, 'a1' : -95, 'a2' : -94, 'a3' : -93, 'a4' : -92, 'a5' : -91, 'a6' : -90, 'a7' : -89, 'a8' : -88, 'a9' : -87, 'aa' : -86, 'ab' : -85, 'ac' : -84, 'ad' : -83, 'ae' : -82, 'af' : -81, 
+    'b0' : -80, 'b1' : -79, 'b2' : -78, 'b3' : -77, 'b4' : -76, 'b5' : -75, 'b6' : -74, 'b7' : -73, 'b8' : -72, 'b9' : -71, 'ba' : -70, 'bb' : -69, 'bc' : -68, 'bd' : -67, 'be' : -66, 'bf' : -65, 
+    'c0' : -64, 'c1' : -63, 'c2' : -62, 'c3' : -61, 'c4' : -60, 'c5' : -59, 'c6' : -58, 'c7' : -57, 'c8' : -56, 'c9' : -55, 'ca' : -54, 'cb' : -53, 'cc' : -52, 'cd' : -51, 'ce' : -50, 'cf' : -49, 
+    'd0' : -48, 'd1' : -47, 'd2' : -46, 'd3' : -45, 'd4' : -44, 'd5' : -43, 'd6' : -42, 'd7' : -41, 'd8' : -40, 'd9' : -39, 'da' : -38, 'db' : -37, 'dc' : -36, 'dd' : -35, 'de' : -34, 'df' : -33, 
+    'e0' : -32, 'e1' : -31, 'e2' : -30, 'e3' : -29, 'e4' : -28, 'e5' : -27, 'e6' : -26, 'e7' : -25, 'e8' : -24, 'e9' : -23, 'ea' : -22, 'eb' : -21, 'ec' : -20, 'ed' : -19, 'ee' : -18, 'ef' : -17, 
+    'f0' : -16, 'f1' : -15, 'f2' : -14, 'f3' : -13, 'f4' : -12, 'f5' : -11, 'f6' : -10, 'f7' : -9, 'f8' : -8, 'f9' : -7, 'fa' : -6, 'fb' : -5, 'fc' : -4, 'fd' : -3, 'fe' : -2, 'ff' : -1 }
 
   private _pwGen;
 
@@ -15,8 +33,20 @@ export class PasswordGenService {
 
   public generatePassword(key: string, passphrase: string, genMethod: number): string
   {
-    return this.generateEnhancedPassword(key, passphrase);
-    //return this._pwGen.generatePassword(key, passphrase, 1);
+      var pass: string = "";
+
+      switch(genMethod)
+      {
+          case 0:
+            pass = this.generateEnhancedPassword(key, passphrase);
+            break;
+        
+          case 1:
+            pass = this.generateAlternativePassword(key, passphrase);
+            break;
+      }
+      
+      return pass;
   }
 
  private generateEnhancedPassword(key: string, masterPassword: string) : string
@@ -25,33 +55,27 @@ export class PasswordGenService {
 
     var sha = require('sha1');
 
+    var pwHash: number[] = this.stringToBytes(sha(masterPassword));
+    var keyHash: number[] = this.stringToBytes(sha(key));
+
+    var combined = new Array(pwHash.length);
     
-
-    var pwHash: string = sha(masterPassword);
-    // var keyHash: string = sha(key);
-
-    var pwHashChars = this.stringToBytes(sha(masterPassword));
-    var keyHashChars = this.stringToBytes(sha(key));
-
-    var combined = new Array(pwHashChars.length);
-    
-    console.log(pwHashChars[1] >>> 0);
-
-    for(var i = 0; i < pwHashChars.length; i++)
+    for(var i = 0; i < pwHash.length; i++)
     {
-      combined[i] = Math.abs(pwHashChars[i] + keyHashChars[keyHashChars.length - (i + 1)]);
+      combined[i] = Math.abs(pwHash[i] + keyHash[keyHash.length - (i + 1)]);
     }
+
+    //console.log(combined);
 
     for(var n = 0; n < combined.length; n++)
     {
       combined[n] = combined[n] % (36 + this._specialCharsV1.length);
 
-      var c: string = (combined[n] < 36) ? String.fromCharCode(combined[n]) : this._specialCharsV1[(combined[n] - 36) % this._specialCharsV1.length];
+      var c: string = (combined[n] < 36) ? combined[n].toString(36) : this._specialCharsV1[(combined[n] - 36) % this._specialCharsV1.length];
 
-      if(this.isLowerCase(c) && (pwHashChars[combined[n] % pwHashChars.length] % 2) == 0)
+      if(this.isLowerCase(c) && (pwHash[combined[n] % pwHash.length] % 2) == 0)
       {
-        var c1: number = c.charCodeAt(0) - 32;
-        c = String.fromCharCode(c1);
+        c = c.toUpperCase();
       }
 
       pwBuilder += c;
@@ -92,7 +116,7 @@ export class PasswordGenService {
 
     		lowerCase = lowerCase || this.isLowerCase(String.fromCharCode(offset1));
     		upperCase = upperCase || this.isUpperCase(String.fromCharCode(offset1));
-        lowerCase = lowerCase || this.isLowerCase(String.fromCharCode(offset2));
+            lowerCase = lowerCase || this.isLowerCase(String.fromCharCode(offset2));
     		upperCase = upperCase || this.isUpperCase(String.fromCharCode(offset2));
     		numeric = numeric || this.isNumeric(String.fromCharCode(offset1));
     		numeric = numeric || this.isNumeric(String.fromCharCode(offset2));
@@ -119,12 +143,12 @@ export class PasswordGenService {
     	return pwBuilder;
   }
 
-  private isLowerCase(a: any): boolean
+  private isLowerCase(a: string): boolean
   {
     return (a === a.toLowerCase() && a !== a.toUpperCase());
   }
 
-  private isUpperCase(a: any): boolean
+  private isUpperCase(a: string): boolean
   {
     return (a === a.toUpperCase() && a !== a.toLowerCase());
   }
@@ -141,131 +165,22 @@ export class PasswordGenService {
 
   private stringToBytes(str: string) 
   {
-    var ch, st, re = [];
+    var chars: string[] = str.split("");
+    var bytes: number[] = new Array(chars.length / 2);
 
-    for (var i = 0; i < str.length; i++ ) 
+    if(chars.length % 2 == 1)
     {
-      ch = str.charCodeAt(i);
-      st = []; 
-
-      do 
-      {
-        st.push(ch & 0xFF);
-        ch = ch >> 8;
-      } while (ch);
-
-      // add stack contents to result
-      // done because chars have "wrong" endianness
-      re = re.concat( st.reverse() );
+        console.log("Warning: Odd number of characters in hash!");
     }
-    
-    return Int8Array.from(re);
-  }
 
-  private getSha1(input): string
-  {
-    var SHA1Generator = {
+    for(var i = 0; i < chars.length; i += 2)
+    {
+        bytes[i / 2] = this._hexDict[chars[i] + chars[i + 1]];
+    }
 
-        hex_chr: "0123456789abcdef",
+    //console.log(bytes);
 
-        hex: function (num) {
-            var str = "";
-            for (var j = 7; j >= 0; j--)
-                str += this.hex_chr.charAt((num >> (j * 4)) & 0x0F);
-            return str;
-        },
-
-
-        str2blks_SHA1: function (str) {
-            var nblk = ((str.length + 8) >> 6) + 1;
-            var blks = new Array(nblk * 16);
-            for (var i = 0; i < nblk * 16; i++) blks[i] = 0;
-            for (i = 0; i < str.length; i++)
-                blks[i >> 2] |= str.charCodeAt(i) << (24 - (i % 4) * 8);
-            blks[i >> 2] |= 0x80 << (24 - (i % 4) * 8);
-            blks[nblk * 16 - 1] = str.length * 8;
-            return blks;
-        },
-
-
-        add: function (x, y) {
-            var lsw = (x & 0xFFFF) + (y & 0xFFFF);
-            var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
-            return (msw << 16) | (lsw & 0xFFFF);
-        },
-
-
-        rol: function (num, cnt) {
-            return (num << cnt) | (num >>> (32 - cnt));
-        },
-
-
-        ft: function (t, b, c, d) {
-            if (t < 20) return (b & c) | ((~b) & d);
-            if (t < 40) return b ^ c ^ d;
-            if (t < 60) return (b & c) | (b & d) | (c & d);
-            return b ^ c ^ d;
-        },
-
-
-        kt: function (t) {
-            return (t < 20) ? 1518500249 : (t < 40) ? 1859775393 :
-            (t < 60) ? -1894007588 : -899497514;
-        },
-
-        calcSHA1FromByte: function(byteArr) {
-            var str = '';
-            for(var i=0; i<byteArr.length; i++)
-                str += String.fromCharCode(byteArr[i]);
-            return this.calcSHA1(str);
-        },
-
-        calcSHA1: function (str) {
-            if (str != '') {
-                var x = this.str2blks_SHA1(str);
-                var w = new Array(80);
-
-                var a = 1732584193;
-                var b = -271733879;
-                var c = -1732584194;
-                var d = 271733878;
-                var e = -1009589776;
-
-                for (var i = 0; i < x.length; i += 16) {
-                    var olda = a;
-                    var oldb = b;
-                    var oldc = c;
-                    var oldd = d;
-                    var olde = e;
-
-                    for (var j = 0; j < 80; j++) {
-                        if (j < 16) w[j] = x[i + j];
-                        else w[j] = this.rol(w[j - 3] ^ w[j - 8] ^ w[j - 14] ^ w[j - 16], 1);
-                        var t = this.add(this.add(this.rol(a, 5), this.ft(j, b, c, d)), this.add(this.add(e, w[j]), this.kt(j)));
-                        e = d;
-                        d = c;
-                        c = this.rol(b, 30);
-                        b = a;
-                        a = t;
-                    }
-
-                    a = this.add(a, olda);
-                    b = this.add(b, oldb);
-                    c = this.add(c, oldc);
-                    d = this.add(d, oldd);
-                    e = this.add(e, olde);
-                }
-                return this.hex(a) + this.hex(b) + this.hex(c) + this.hex(d) + this.hex(e);
-            }
-            else {
-                return '';
-            }
-        }
-    };
-
-    var bArray = this.stringToBytes(input);
-
-    return SHA1Generator.calcSHA1FromByte(bArray);
+    return bytes;
   }
 
 }

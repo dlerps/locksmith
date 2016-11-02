@@ -8,9 +8,14 @@
       <label class="sr-only" for="pwGenKey">Key</label>
       <input type="password" class="form-control" id="pwGenKey"placeholder="Master-Password" class="pwInput form-control" #masterPassword>
     </div>
-    <button (click)="generatePw(key, masterPassword)" type="button" class="btn btn-block btn-primary">Generate!</button>
+    <div class="generateButtonBlock btn-group-justified btn-group" role="group">
+      <button (click)="generatePw(key, masterPassword, 0)" type="button" class="btn btn-primary">Enhanced</button>
+      <button (click)="generatePw(key, masterPassword, 2)" type="button" class="btn btn-danger">Normal</button>      
+      <button (click)="generatePw(key, masterPassword, 3)" type="button" class="btn btn-success">Simple</button>      
+      <button (click)="generatePw(key, masterPassword, 1)" type="button" class="btn btn-warning">Alternative</button>      
+    </div>
     <br />
-    <div class="alert alert-info passwordOutput" role="alert" *ngIf="generatedPassword">
+    <div class="alert alert-{{alertClass}} passwordOutput" role="alert" *ngIf="generatedPassword">
       {{generatedPassword}}
     </div>
   </div>
