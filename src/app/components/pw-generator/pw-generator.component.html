@@ -15,7 +15,7 @@
       <button (click)="generatePw(key, masterPassword, 1)" type="button" class="btn btn-warning">Alternative</button>      
     </div>
     <br />
-    <div class="alert alert-{{alertClass}} passwordOutput" role="alert" *ngIf="generatedPassword">
+    <div class="alert alert-{{alertClass}} passwordOutput" role="alert" *ngIf="generatedPassword" (click)="copyAndClear(output)" #output>
       {{generatedPassword}}
     </div>
   </div>

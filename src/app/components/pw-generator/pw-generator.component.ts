@@ -49,4 +49,19 @@ export class PwGeneratorComponent implements OnInit {
     pwInputElem.value = "";
     keyInputElem.value = "";
   }
+
+  copyAndClear(divElem)
+  {
+    var selection = window.getSelection();        
+    var range = document.createRange();
+
+    range.selectNodeContents(divElem);
+    
+    selection.removeAllRanges();
+    selection.addRange(range);
+
+    document.execCommand("copy");
+
+    this.generatedPassword = "";
+  }
 }
