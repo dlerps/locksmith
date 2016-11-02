@@ -1,7 +1,8 @@
 
 # Locksmith
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.19-3.
+Lockmith is a password generation tool which uses a key as seed and a master-password to create unique passwords for different occasions. 
+See a live version on: http://locksmith.lerps.de
 
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
