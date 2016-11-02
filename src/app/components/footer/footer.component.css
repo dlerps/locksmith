@@ -1,0 +1,11 @@
+div.footInfo {
+      background:black;
+      position: fixed;
+      left: 0px;
+      bottom: 0px;
+      width: 100%;
+      text-align: right;
+      font-size: small;
+      padding: 10px 20px;
+      color: white;
+}

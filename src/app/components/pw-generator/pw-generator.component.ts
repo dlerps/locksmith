@@ -19,9 +19,6 @@ export class PwGeneratorComponent implements OnInit {
 
   generatePw(keyInputElem, pwInputElem, algorithm: number)
   {
-    console.log(keyInputElem.value);
-    console.log(pwInputElem.value);
-
     switch(algorithm)
     {
       case 0:

@@ -6,12 +6,14 @@ import { AlertModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { AppComponent } from './app.component';
 import { PwGeneratorComponent } from './components/pw-generator/pw-generator.component';
-import { PasswordGenService } from "./services"
+import { PasswordGenService } from "./services";
+import { FooterComponent } from './components/footer/footer.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    PwGeneratorComponent
+    PwGeneratorComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
