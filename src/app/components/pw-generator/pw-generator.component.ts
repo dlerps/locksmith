@@ -13,7 +13,8 @@ export class PwGeneratorComponent implements OnInit {
 
   constructor(private _pwGen: PasswordGenService) { }
 
-  ngOnInit() {
+  ngOnInit() 
+  {
   }
 
   generatePw(keyInputElem, pwInputElem, algorithm: number)
