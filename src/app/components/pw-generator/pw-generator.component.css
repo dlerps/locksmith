@@ -1,0 +1,15 @@
+div.inputBlock {
+    width: 400px;
+    margin: auto;
+}
+
+div.passwordOutput {
+    text-align: center;
+    margin-top: 40px;
+    font-weight: bold;
+    font-size: large;
+}
+
+div.outerBlock {
+    margin-top: 20%;
+}
