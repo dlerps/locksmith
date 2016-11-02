@@ -5,6 +5,7 @@ import { PasswordUtils } from "../../assets";
 export class PasswordGenService 
 {
   private _utils: PasswordUtils;
+  private _radix: number = 36;
 
   private _specialCharsV1 = [ '(', ')', '-', '=', '$', '@', '!', '.', ':', '*', '/', '\\',
     '&', ',', '"', ';', '{', ']', '|', '?', '>', '%', '~', '#', '+', '[', '}', '_', '<', '^', "'" ];
@@ -27,21 +28,29 @@ export class PasswordGenService
           case 1:
             pass = this.generateAlternativePassword(key, passphrase);
             break;
+
+          case 2:
+            pass = this.generateNormalPassword(key, passphrase);
+            break;
+
+          case 3:
+            pass = this.generateSimplePassword(key, passphrase);
+            break;
       }
       
       return pass;
   }
 
- private generateEnhancedPassword(key: string, masterPassword: string) : string
- {
+  private generateEnhancedPassword(key: string, masterPassword: string) : string
+  {
     var pwBuilder: string = "";
     var pw: PasswordArrays = new PasswordArrays(key, masterPassword);
 
     for(var n = 0; n < pw.combined.length; n++)
     {
-      pw.combined[n] = pw.combined[n] % (36 + this._specialCharsV1.length);
+      pw.combined[n] = pw.combined[n] % (this._radix + this._specialCharsV1.length);
 
-      var c: string = (pw.combined[n] < 36) ? pw.combined[n].toString(36) : this._specialCharsV1[(pw.combined[n] - 36) % this._specialCharsV1.length];
+      var c: string = (pw.combined[n] < this._radix) ? pw.combined[n].toString(this._radix) : this._specialCharsV1[(pw.combined[n] - this._radix) % this._specialCharsV1.length];
 
       if(this._utils.isLowerCase(c) && (pw.pwHash[pw.combined[n] % pw.pwHash.length] % 2) == 0)
       {
@@ -52,7 +61,43 @@ export class PasswordGenService
     }
 
     return pwBuilder.substring(0, 12 + (key.length % 3));
- }
+  }
+
+  private generateNormalPassword(key: string, masterPassword: string) : string
+  {
+    var pwBuilder: string = "";
+    var pw: PasswordArrays = new PasswordArrays(key, masterPassword);
+
+    for(var n = 0; n < pw.combined.length; n++)
+    {
+      pw.combined[n] = pw.combined[n] % this._radix;
+
+      var c: string = pw.combined[n].toString(this._radix);
+
+      if(this._utils.isLowerCase(c) && (pw.pwHash[pw.combined[n] % pw.pwHash.length] % 2) == 0)
+      {
+        c = c.toUpperCase();
+      }
+
+      pwBuilder += c;
+    }
+
+    return pwBuilder.substring(0, 12 + (key.length % 3));
+  }
+
+  private generateSimplePassword(key: string, masterPassword: string) : string
+  {
+    var pwBuilder: string = "";
+    var pw: PasswordArrays = new PasswordArrays(key, masterPassword);
+
+    for(var n = 0; n < pw.combined.length; n++)
+    {
+      pw.combined[n] = pw.combined[n] % this._radix;
+      pwBuilder += pw.combined[n].toString(this._radix);
+    }
+
+    return pwBuilder.substring(0, 12 + (key.length % 3));
+  }
 
   private generateAlternativePassword(key: string, passphrase: string): string
   {
@@ -85,14 +130,14 @@ export class PasswordGenService
     		offset2 %= 93;
     		offset2 += 33;
 
-    		lowerCase = lowerCase || this._utils.isLowerCase(offset1.toString(36));
-    		upperCase = upperCase || this._utils.isUpperCase(offset1.toString(36));
-            lowerCase = lowerCase || this._utils.isLowerCase(offset2.toString(36));
-    		upperCase = upperCase || this._utils.isUpperCase(offset2.toString(36));
-    		numeric = numeric || this._utils.isNumeric(offset1.toString(36));
-    		numeric = numeric || this._utils.isNumeric(offset2.toString(36));
+    		lowerCase = lowerCase || this._utils.isLowerCase(offset1.toString(this._radix));
+    		upperCase = upperCase || this._utils.isUpperCase(offset1.toString(this._radix));
+        lowerCase = lowerCase || this._utils.isLowerCase(offset2.toString(this._radix));
+    		upperCase = upperCase || this._utils.isUpperCase(offset2.toString(this._radix));
+    		numeric = numeric || this._utils.isNumeric(offset1.toString(this._radix));
+    		numeric = numeric || this._utils.isNumeric(offset2.toString(this._radix));
 
-    		pwBuilder += offset1.toString(36) + offset2.toString(36);
+    		pwBuilder += offset1.toString(this._radix) + offset2.toString(this._radix);
     	}
 
     	if(!numeric)
