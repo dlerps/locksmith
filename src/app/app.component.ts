@@ -10,6 +10,8 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent {
 
   private _bodyStyle: any;
+  private _backgroundColour: string;
+
   private _colours: string[] = [
     "aliceblue",
     "aquamarine",
@@ -48,8 +50,10 @@ export class AppComponent {
   {
     let index: number = Math.floor(this._colours.length * Math.random());
 
+    this._backgroundColour = this._colours[index];
+
     this._bodyStyle = {
-      "background-color" : this._colours[index]
+      "background-color" : this._backgroundColour
     }
   }
 }

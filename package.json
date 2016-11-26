@@ -1,7 +1,7 @@
 {
   "name": "pw-online",
-  "version": "0.0.0",
-  "license": "MIT",
+  "version": "1.1.0",
+  "license": "GPL 3.0",
   "angular-cli": {},
   "scripts": {
     "start": "ng serve",
