@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=PT+Sans');
 
+$mainWidth: 400px;
+
 div.mainHeader {
       text-align: right;
       margin: auto;
-      width: 400px;
+      width: $mainWidth;
       margin-top: 18%;
 
       h1 {
@@ -14,5 +16,11 @@ div.mainHeader {
             background-color: black;
             padding: 1px 5px 1px 30px;
             display: inline-block;
+      }
+
+      img.logo {
+            width: $mainWidth / 3;
+            display: block;
+            margin-left: auto;
       }
 }
