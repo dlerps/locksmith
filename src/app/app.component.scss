@@ -2,25 +2,33 @@
 
 $mainWidth: 400px;
 
-div.mainHeader {
-      text-align: right;
-      margin: auto;
-      width: $mainWidth;
-      margin-top: 18%;
+div.body {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding-top: 15%;
 
-      h1 {
+      div.mainHeader {
             text-align: right;
-            font-family: 'PT Sans', sans-serif;
-            font-size: x-large;
-            color: white;
-            background-color: black;
-            padding: 1px 5px 1px 30px;
-            display: inline-block;
-      }
+            margin: auto;
+            width: $mainWidth;
 
-      img.logo {
-            width: $mainWidth / 3;
-            display: block;
-            margin-left: auto;
+            h1 {
+                  text-align: right;
+                  font-family: 'PT Sans', sans-serif;
+                  font-size: x-large;
+                  color: white;
+                  background-color: black;
+                  padding: 1px 5px 1px 30px;
+                  display: inline-block;
+            }
+
+            img.logo {
+                  width: $mainWidth / 3;
+                  display: block;
+                  margin-left: auto;
+            }
       }
 }
