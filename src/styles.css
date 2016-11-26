@@ -1,20 +1,6 @@
 /* Global Styles */
 
-@import url('https://fonts.googleapis.com/css?family=PT+Sans');
-
-div.mainHeader h1 {
-      text-align: right;
-      font-family: 'PT Sans', sans-serif;
-      font-size: x-large;
-      color: white;
-      background-color: black;
-      padding: 1px 5px 1px 30px;
-      display: inline-block;
-}
-
-div.mainHeader {
-      text-align: right;
-      margin: auto;
-      width: 400px;
-      margin-top: 18%;
+div.loading {
+      text-align: center;
+      padding-top: 25%;
 }
