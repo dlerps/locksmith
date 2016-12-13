@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { PasswordGenService } from "../../services";
 
 @Component({
-  selector: 'pw-generator',
-  templateUrl: './pw-generator.component.html',
-  styleUrls: ['./pw-generator.component.css']
+  selector: "pw-generator",
+  templateUrl: "./pw-generator.component.html",
+  styleUrls: [
+    "./pw-generator.component.scss"
+    ]
 })
 export class PwGeneratorComponent implements OnInit {
 
