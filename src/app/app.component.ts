@@ -12,6 +12,8 @@ export class AppComponent {
   private _bodyStyle: any;
   private _backgroundColour: string;
 
+  private _now = new Date();
+
   private _colours: string[] = [
     "aliceblue",
     "aquamarine",
