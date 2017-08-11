@@ -7,11 +7,11 @@
       <div class="welcome">
         Hello <strong>{{ _user }}</strong>!
         <a (click)="googleSignOut($event)" href="#">
-          <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+          <span class="logout" aria-hidden="true">Logout</span>
         </a>
       </div>
       <ul class="list-group settings-list">
-        <li class="list-group-item">
+        <li class="list-group-item new-setting-item">
           <div class="new-setting-form">
             <div class="form-group">
               <label class="sr-only" for="setting-name">Name</label>
@@ -24,7 +24,7 @@
             </div>
           </div>
         </li>
-        <li *ngFor="let s of _settings" class="list-group-item list-group-item-action">
+        <li *ngFor="let s of _settings" (click)="selectSetting(s.name, s.algorithm)" class="list-group-item list-group-item-action">
           <a (click)="selectSetting(s.name, s.algorithm)" href="#">
             <div>{{ s.name }} 
               <span [ngClass]="getBadgeClass(s.algorithm)">{{ getBadgeText(s.algorithm) }}</span>

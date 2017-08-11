@@ -88,7 +88,6 @@ export class PwGeneratorComponent implements OnInit {
   }
 
   public setSetting(setting: any) {
-    console.log(setting);
     if(setting && setting.name) {
       this._key = setting.name;
       this._selectedAlgorithm = setting.algorithm;

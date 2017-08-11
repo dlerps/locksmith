@@ -22,6 +22,8 @@
 
     input {
         width: 100%;
+        border: solid 1px #eee;
+        padding: 10px;
     }
 
     .badge-primary {
@@ -48,6 +50,18 @@
             text-decoration: none;
         }
     }
+}
+
+.list-group-item-action {
+    padding: 30px 5px !important;
+}
+
+.new-setting-item {
+    padding: 60px 2px !important;
+}
+
+.logout {
+    font-size: smaller;
 }
 
 .list-group {
@@ -96,7 +110,6 @@
     }
 }
 
-
 .settings-panel {
     width: 100%;
 }
@@ -107,9 +120,10 @@
 
 div.welcome {
     margin-bottom: 10px;
-    padding-left: 3px;
+    padding: 5px 10px 0px;
     text-align: right;
-    width: 25vw;
+    display: block;
+
 
     a {
         color: black;

@@ -15,7 +15,7 @@ export class AppComponent {
 
   private _now = new Date();
 
-  private _colours: string[] = [
+  _colours: string[] = [
     "aliceblue",
     "aquamarine",
     "azure",

@@ -25,7 +25,6 @@ export class SettingsListComponent implements OnInit {
 
     this._auth.authState
       .subscribe(a => {
-        console.log(a);
         this._loggedIn = a !== null;
 
         if(this._loggedIn) {
@@ -107,7 +106,7 @@ export class SettingsListComponent implements OnInit {
       this._settings = [];
     }
     else {
-      console.log(settings);
+      //console.log(settings);
       this._settings = [];
 
       let keys = Object.keys(settings);
