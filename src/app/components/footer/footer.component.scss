@@ -1,0 +1,26 @@
+div.footInfo {
+      background:black;
+      position: fixed;
+      left: 0px;
+      bottom: 0px;
+      width: 100%;
+      text-align: right;
+      font-size: small;
+      padding: 10px 20px;
+      color: white;
+
+      span.leftInfo {
+            position: absolute;
+            color: black;
+            left: 10px;
+            transition: 1s;
+            -ms-transition: 1s;
+            -moz-transition: 1s;
+            -webkit-transition: 1s;
+            cursor: none;
+
+            &:hover {
+                  color: white;
+            }
+      }
+}

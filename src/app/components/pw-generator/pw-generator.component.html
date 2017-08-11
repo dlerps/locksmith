@@ -1,0 +1,23 @@
+<div class="outerBlock">
+  <div class="inputBlock">
+    <div class="form-group">
+      <label class="sr-only" for="pwGenKey">Key</label>
+      <input type="text" class="form-control" id="pwGenKey" placeholder="Key" #key>
+    </div>
+    <div class="form-group">
+      <label class="sr-only" for="pwGenKey">Key</label>
+      <input type="password" class="form-control" id="pwGenKey"placeholder="Master-Password" class="pwInput form-control" #masterPassword>
+    </div>
+    <div class="generateButtonBlock btn-group-justified btn-group" role="group">
+      <button (click)="generatePw(key, masterPassword, 0)" type="button" class="btn btn-primary">Enhanced</button>
+      <button (click)="generatePw(key, masterPassword, 2)" type="button" class="btn btn-danger">Normal</button>      
+      <button (click)="generatePw(key, masterPassword, 3)" type="button" class="btn btn-success">Simple</button>      
+      <!--Todo Algorithm not yet working-->
+      <!--<button (click)="generatePw(key, masterPassword, 1)" type="button" class="btn btn-warning">Alternative</button>      -->
+    </div>
+    <br />
+    <div class="alert alert-{{alertClass}} passwordOutput" role="alert" *ngIf="generatedPassword" (click)="copyAndClear(output)" #output>
+      {{generatedPassword}}
+    </div>
+  </div>
+</div>
