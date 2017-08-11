@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PwGeneratorComponent } from './components/pw-generator';
 
 @Component({
   selector: "locksmith-root",
@@ -44,7 +45,6 @@ export class AppComponent {
     "snow",
     "steelblue",
     "teal",
-    "black",
     "white"
   ];
 
@@ -57,5 +57,10 @@ export class AppComponent {
     this._bodyStyle = {
       "background-color" : this._backgroundColour
     }
+  }
+
+  selectSetting(setting: any, dest: PwGeneratorComponent) {
+    console.log(setting, dest);
+    dest.setSetting(setting);
   }
 }

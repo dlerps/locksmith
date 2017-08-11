@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { PasswordGenService } from "../../services";
 
 @Component({
@@ -12,6 +12,10 @@ export class PwGeneratorComponent implements OnInit {
 
   public generatedPassword: string = "";
   public alertClass: string = "info";
+
+  // @Input("key")
+  _key: string = "";
+  _selectedAlgorithm: number = -1;
 
   constructor(private _pwGen: PasswordGenService) { }
 
@@ -41,10 +45,14 @@ export class PwGeneratorComponent implements OnInit {
         this.alertClass = "info";
     }
 
-    this.generatedPassword = this._pwGen.generatePassword(keyInputElem.value, pwInputElem.value, algorithm);
+    this.generatedPassword = this._pwGen
+      .generatePassword(keyInputElem.value.toLowerCase(), pwInputElem.value, algorithm);
 
     pwInputElem.value = "";
-    keyInputElem.value = "";
+    //keyInputElem.value = "";
+
+    this._selectedAlgorithm = -1;
+    this._key = null;
   }
 
   copyAndClear(divElem)
@@ -60,5 +68,30 @@ export class PwGeneratorComponent implements OnInit {
     document.execCommand("copy");
 
     this.generatedPassword = "";
+  }
+
+  getButtonClass(algorithm: number) {
+    let css = "btn btn-";
+
+    if(algorithm === this._selectedAlgorithm || this._selectedAlgorithm === -1){
+      switch(algorithm) {
+        case 0:
+          return css += "primary";
+        case 2:
+          return css += "danger";
+        case 3:
+          return css += "success";
+      }
+    }
+
+    return css += "secondary";
+  }
+
+  public setSetting(setting: any) {
+    console.log(setting);
+    if(setting && setting.name) {
+      this._key = setting.name;
+      this._selectedAlgorithm = setting.algorithm;
+    }
   }
 }

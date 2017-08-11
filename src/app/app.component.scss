@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=PT+Sans');
 
-$mainWidth: 400px;
+$mainWidth: 40vw;
 
 div.body {
       width: 100%;
@@ -8,7 +8,7 @@ div.body {
       position: fixed;
       top: 0;
       left: 0;
-      padding-top: 7%;
+      padding-top: 6%;
 
       div.mainHeader {
             text-align: right;
@@ -26,7 +26,7 @@ div.body {
             }
 
             img.logo {
-                  width: $mainWidth / 3;
+                  width: $mainWidth / 4;
                   display: block;
                   margin-left: auto;
             }

@@ -1,8 +1,18 @@
 <div class="body" [ngStyle]="_bodyStyle">
-      <div class="mainHeader">
-            <img src="../../assets/img/locksmith_450.png" alt="locksmith" class="logo" />
-            <h1>locksmith</h1>
+      <div class="container-fluid">
+            <div class="row">
+                  <div class="col-sm-8">
+                        <div class="mainHeader">
+                              <img src="../../assets/img/locksmith_450.png" alt="locksmith" class="logo" />
+                              <h1>locksmith</h1>
+                        </div>
+                        <pw-generator #generator></pw-generator>
+                  </div>
+                  <div class="col-sm-2">
+                        <settings-list (onSettingSelect)="selectSetting($event, generator)"></settings-list>
+                  </div>
+            </div>
       </div>
-      <pw-generator></pw-generator>
-      <pw-footer [owner]="'Daniel Lerps'" [year]="_now | date:'2013-yyyy'" [left-info]="_backgroundColour"></pw-footer>
+      <pw-footer [owner]="'Daniel Lerps'" [year]="_now | date:'2013-yyyy'" 
+            [left-info]="_backgroundColour"></pw-footer>
 </div>    

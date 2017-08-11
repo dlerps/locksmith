@@ -1,0 +1,40 @@
+<div class="settings-panel">
+    <div *ngIf="!_loggedIn">
+      Please sign in!
+      <a #googleSignin (click)="googleSignIn($event)" href="#">Google login</a>
+    </div>
+    <div *ngIf="_loggedIn" class="list">
+      <div class="welcome">
+        Hello <strong>{{ _user }}</strong>!
+        <a (click)="googleSignOut($event)" href="#">
+          <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+        </a>
+      </div>
+      <ul class="list-group settings-list">
+        <li class="list-group-item">
+          <div class="new-setting-form">
+            <div class="form-group">
+              <label class="sr-only" for="setting-name">Name</label>
+              <input #newSettingName type="text" name="setting-name" placeholder="Save new setting" />
+            </div>
+            <div class="save-setting-group btn-group-justified btn-group" role="group">
+              <button (click)="saveSetting(newSettingName, 0)" type="button" class="btn btn-primary">E</button>
+              <button (click)="saveSetting(newSettingName, 2)" type="button" class="btn btn-danger">N</button>
+              <button (click)="saveSetting(newSettingName, 3)" type="button" class="btn btn-success">S</button>
+            </div>
+          </div>
+        </li>
+        <li *ngFor="let s of _settings" class="list-group-item list-group-item-action">
+          <a (click)="selectSetting(s.name, s.algorithm)" href="#">
+            <div>{{ s.name }} 
+              <span [ngClass]="getBadgeClass(s.algorithm)">{{ getBadgeText(s.algorithm) }}</span>
+              <a (click)="removeSetting(s.name)" href="#" class="remove">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              </a>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+</div>
