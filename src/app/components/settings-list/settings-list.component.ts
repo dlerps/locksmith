@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Input, Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
@@ -10,7 +10,11 @@ import * as firebase from 'firebase/app';
 })
 export class SettingsListComponent implements OnInit {
 
-  @Output("onSettingSelect") selected: EventEmitter<any> = new EventEmitter<any>();
+  @Output("onSettingSelect") 
+  _selected: EventEmitter<any> = new EventEmitter<any>();
+
+  @Input('dark-welcome-text')
+  _darkText: boolean = true;
 
   _loggedIn: boolean = false;
   _user: any;
@@ -141,7 +145,7 @@ export class SettingsListComponent implements OnInit {
   }
 
   selectSetting(name, a) {
-    this.selected.emit({
+    this._selected.emit({
       name: name,
       algorithm: a
     });
@@ -172,6 +176,13 @@ export class SettingsListComponent implements OnInit {
 
   replaceAll(target, search, replacement) {
     return target.replace(new RegExp(search, 'g'), replacement);
-};
+  };
+
+  getWelcomeTextColour(): any {
+    let c = this._darkText ? '#333' : '#EEE';
+    return {
+      color: c
+    }
+  }
 
 }

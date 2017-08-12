@@ -28,3 +28,13 @@ div.outerBlock {
 div.generateButtonBlock button {
     width: 33.33%;
 }
+
+.password-generator {
+    input {
+        background-color: rgba(255, 255, 255, .25);
+
+        &:focus {
+            background-color: #FFF;
+        }
+    }
+}

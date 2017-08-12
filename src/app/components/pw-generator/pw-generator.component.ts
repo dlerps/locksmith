@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { PasswordGenService } from "../../services";
 
 @Component({
@@ -10,10 +10,9 @@ import { PasswordGenService } from "../../services";
 })
 export class PwGeneratorComponent implements OnInit {
 
-  public generatedPassword: string = "";
-  public alertClass: string = "info";
+  generatedPassword: string = "";
+  alertClass: string = "info";
 
-  // @Input("key")
   _key: string = "";
   _selectedAlgorithm: number = -1;
 
@@ -49,7 +48,7 @@ export class PwGeneratorComponent implements OnInit {
       .generatePassword(keyInputElem.value.toLowerCase(), pwInputElem.value, algorithm);
 
     pwInputElem.value = "";
-    //keyInputElem.value = "";
+    keyInputElem.value = "";
 
     this._selectedAlgorithm = -1;
     this._key = null;

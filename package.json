@@ -23,6 +23,7 @@
     "@angular/router": "^4.0.0",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.30",
     "angular-font-awesome": "^2.1.4",
+    "angular2-fontawesome": "^0.9.3",
     "angularfire2": "^4.0.0-rc.1",
     "bootstrap": "^4.0.0-alpha.6",
     "core-js": "^2.4.1",

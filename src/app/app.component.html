@@ -9,10 +9,10 @@
                         <pw-generator #generator></pw-generator>
                   </div>
                   <div class="col-sm-2">
-                        <settings-list (onSettingSelect)="selectSetting($event, generator)"></settings-list>
+                        <settings-list (onSettingSelect)="selectSetting($event, generator)"
+                              [dark-welcome-text]="_useDarkHeader"></settings-list>
                   </div>
             </div>
       </div>
-      <pw-footer [owner]="'Daniel Lerps'" [year]="_now | date:'2013-yyyy'" 
-            [left-info]="_backgroundColour"></pw-footer>
+      <pw-footer [owner]="'Daniel Lerps'" [year]="_now | date:'2013-yyyy'" [left-info]="_backgroundColour"></pw-footer>
 </div>    
