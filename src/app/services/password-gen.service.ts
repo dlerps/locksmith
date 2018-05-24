@@ -38,7 +38,7 @@ export class PasswordGenService
             break;
       }
       
-      return pass;
+      return pass.trim();
   }
 
   private generateEnhancedPassword(key: string, masterPassword: string) : string

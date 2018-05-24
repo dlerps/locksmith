@@ -54,10 +54,12 @@ export class PwGeneratorComponent implements OnInit {
     this._key = null;
   }
 
-  copyAndClear(divElem)
+  copyAndClear(divElem: Node)
   {
-    var selection = window.getSelection();        
-    var range = document.createRange();
+    let selection: Selection = window.getSelection();        
+    let range: Range = document.createRange();
+
+    divElem.textContent = divElem.textContent.trim();
 
     range.selectNodeContents(divElem);
     
